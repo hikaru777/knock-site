@@ -42,3 +42,35 @@
 .price-note a{color:#c4c8d6;text-decoration:underline;text-underline-offset:4px}
 /* The room is on the right edge of the picture: the pause button goes to the other side. */
 .motion-toggle{left:5%;right:auto}
+/* Knock's own pictures for the three steps: the edge, its half-moon dial, three knocks, the room. */
+.wordmark{gap:0}
+.dial-art,.knock-art,.room-art{background:#15171c}
+.edge-line{position:absolute;right:26px;top:22px;bottom:22px;width:3px;border-radius:2px;background:#3a3f4b}
+.dial-art .moon{position:absolute;right:-120px;top:50%;width:240px;height:240px;margin-top:-120px;border-radius:50%;background:radial-gradient(circle at 30% 50%,#23283a,#141720 70%);box-shadow:inset 0 0 0 1px #ffffff14}
+.dial-art .arc{position:absolute;right:58px;top:50%;width:70px;height:120px;margin-top:-60px;border-left:3px solid #e9ecf5;border-radius:50%/50%;opacity:.9}
+.dial-art .p{position:absolute;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:15px;font-weight:700;box-shadow:0 0 0 2px #ffffffb0}
+.dial-art .p1{right:38px;top:calc(50% - 82px);background:#e0896f;transform:scale(.75);opacity:.6}
+.dial-art .p2{right:48px;top:calc(50% - 20px);width:46px;height:46px;margin-top:-3px;background:#5f8fe8;animation:pick 4s ease-in-out infinite}
+.dial-art .p3{right:38px;top:calc(50% + 42px);background:#4fb08c;transform:scale(.75);opacity:.6}
+.dial-art .pick{position:absolute;right:122px;top:50%;transform:translateY(-50%);font-size:34px;font-weight:800;letter-spacing:-.04em;color:#7fa2ff;writing-mode:vertical-rl}
+@keyframes pick{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+.knock-art .ring{position:absolute;right:20px;top:50%;width:16px;height:16px;margin:-8px -8px 0 0;border-radius:50%;border:2px solid #7fa2ff;opacity:0;animation:ring 3s ease-out infinite}
+.knock-art .r2{animation-delay:.35s}.knock-art .r3{animation-delay:.7s}
+@keyframes ring{0%{transform:scale(.4);opacity:0}8%{opacity:1}45%{transform:scale(9);opacity:0}100%{opacity:0}}
+.knock-art .cursor{position:absolute;right:34px;top:calc(50% - 6px);width:22px;height:32px;fill:#fff;stroke:#111;stroke-width:1.4;animation:bump 3s ease-in-out infinite}
+@keyframes bump{0%,100%{transform:translateX(-40px)}6%,18%,30%{transform:translateX(0)}12%,24%{transform:translateX(-22px)}40%,90%{transform:translateX(-40px)}}
+.knock-art .count{position:absolute;left:28px;bottom:24px;display:flex;gap:8px}
+.knock-art .count b{width:9px;height:9px;border-radius:50%;background:#3a3f4b;animation:lit 3s steps(1) infinite}
+.knock-art .count b:nth-child(1){animation-delay:.18s}.knock-art .count b:nth-child(2){animation-delay:.54s}.knock-art .count b:nth-child(3){animation-delay:.9s}
+@keyframes lit{0%{background:#7fa2ff}40%,100%{background:#3a3f4b}}
+.room-art{align-items:stretch;justify-content:flex-end}
+.mini-room{position:relative;width:62%;margin:16px 16px 16px 0;border-radius:16px;background:linear-gradient(160deg,#2a2f42,#1b1e2a);box-shadow:inset 0 0 0 1px #ffffff1a,0 20px 40px #0006;padding:12px;display:flex;flex-direction:column;gap:7px;color:#fff;font-size:11px;overflow:hidden}
+.mr-head{display:flex;justify-content:flex-end;align-items:center;gap:7px;font-weight:700;font-size:13px}
+.mr-head i{width:20px;height:20px;border-radius:50%;background:#5f8fe8}
+.mr-screen{height:52px;border-radius:7px;background:#f3f4f7;display:flex;align-items:flex-end;gap:5px;padding:8px 10px;box-shadow:0 0 0 1.5px #5f8fe8}
+.mr-screen b{width:12px;background:#3f7ef0;border-radius:2px}
+.mr-screen b:nth-child(1){height:30%}.mr-screen b:nth-child(2){height:48%}.mr-screen b:nth-child(3){height:58%}.mr-screen b:nth-child(4){height:85%}
+.mr-file{align-self:flex-end;background:#ffffff1f;border-radius:8px;padding:5px 9px}
+.mr-b{padding:5px 10px;border-radius:12px;max-width:85%}
+.mr-b.them{align-self:flex-start;background:#0b0c10}
+.mr-b.me{align-self:flex-end;background:#5f7fd8}
