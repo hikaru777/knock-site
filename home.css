@@ -74,3 +74,12 @@
 .mr-b{padding:5px 10px;border-radius:12px;max-width:85%}
 .mr-b.them{align-self:flex-start;background:#0b0c10}
 .mr-b.me{align-self:flex-end;background:#5f7fd8}
+/* The room's moments play in the clear band at the top: it is taller here than NotchSwitcher's
+   strip, and the words come below it. */
+.hero-motion{height:720px}.blur-mid{top:50%}.blur-deep{top:64%}
+.motion-fade{background:linear-gradient(180deg,transparent 0%,transparent 40%,#090a0b55 55%,#090a0bd9 75%,#090a0b 100%)}
+.immersive-copy{padding-top:470px}
+@media(min-width:1600px){.hero-motion{height:800px}.immersive-copy{padding-top:520px}}
+/* The room lives on the right edge of the screen: the picture keeps its right edge, and is not darkened there. */
+.hero-motion video{object-position:100% 0}
+.hero-motion:before{background:linear-gradient(90deg,#090a0b70,transparent 30%)}
