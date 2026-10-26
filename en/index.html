@@ -27,36 +27,13 @@
     </div>
     <div class="hero-aside">
       <p>Not quite a call. Just a quick word.<br>Bump your cursor against the edge of the screen and a friend gets a knock. When they answer, a small room opens on the edge of both screens.</p>
-      <a class="try-link" href="#experience">Give it a try <span aria-hidden="true">↓</span></a>
+      <a class="try-link" href="#experience">Watch it <span aria-hidden="true">↓</span></a>
       <p class="note">For Mac. Free.</p>
     </div>
   </header>
 
-  <section id="experience" class="experience" aria-label="Interactive Knock demo">
-    <div class="desk" id="desk" data-phase="idle">
-      <div class="menubar" aria-hidden="true"><span>Finder　File　Edit　View</span><span>10:09</span></div>
-      <div class="window" aria-hidden="true"><div class="lights"><i></i><i></i><i></i></div><div class="lines"><b></b><b></b><b class="short"></b><b></b><b class="short"></b></div></div>
-      <div class="dial" id="dial" aria-hidden="true"></div>
-      <div class="bumps" id="bumps" aria-hidden="true"><i></i><i></i><i></i></div>
-      <div class="ripple" id="ripple" aria-hidden="true"></div>
-      <aside class="room" id="room" aria-live="polite">
-        <div class="room-head"><button class="room-close" id="roomClose" aria-label="Close">×</button><div><strong id="roomName"></strong><span>Connected</span></div><div class="avatar" id="roomAvatar"></div></div>
-        <div class="room-floor" id="floor">
-          <div class="tiles" id="tiles"></div>
-          <div class="bubbles" id="bubbles"></div>
-          <div class="cursor them" id="theirCursor"><svg viewBox="0 0 16 22" aria-hidden="true"><path d="M1 1v17l4.5-4.2 3 6.7 3-1.4-3-6.5H15z"/></svg><span id="theirLabel"></span></div>
-        </div>
-        <div class="room-foot"><div class="replies" id="replies"></div><button class="show" id="showMe">Ask to see their screen</button></div>
-      </aside>
-      <div class="edge" id="edge" aria-label="The right edge of the screen" role="button" tabindex="0"></div>
-      <div class="lightbox" id="lightbox" hidden><div class="big" id="big"></div><p>Click outside or press Esc to go back</p></div>
-    </div>
-    <div class="toolbar">
-      <p class="status" id="status" aria-live="polite">Move your cursor to the right edge of the screen.</p>
-      <button class="fallback" id="fallback">Try with a click</button>
-    </div>
-    <p class="disclaimer">A browser sample. Nobody actually receives anything.</p>
-    <script type="application/json" id="demoText">{"idle": "Move your cursor to the right edge of the screen.", "edge": "Scroll up or down on the edge to choose, then bump the edge three times (or click three times) to knock.", "knocking": "Knocking on {name}…", "room": "{name} answered. Send a quick reply, or ask to see their screen.", "closed": "Room closed. Try it again.", "connected": "Connected", "theirScreen": "{name}’s screen", "showMe": "Ask to see their screen", "back": "Click outside or press Esc to go back", "replies": ["OK", "Wait", "Later"], "answer": "Sure, showing you now", "theirReplies": ["Got it!", "Take your time", "Talk later, then"], "people": ["Haru", "Nagi", "Ao"], "tryClick": "Try with a click", "close": "Close"}</script>
+  <section id="experience" class="experience" aria-label="Knock in action">
+    <video class="reel" src="../media/knock.mp4" poster="../media/knock-poster.jpg" autoplay muted loop playsinline preload="metadata"></video>
   </section>
 
   <section class="about">
@@ -127,6 +104,5 @@
     <div><a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a><span>© 2026 Knock</span></div>
   </footer>
 </main>
-<script src="../demo.js"></script>
 </body>
 </html>

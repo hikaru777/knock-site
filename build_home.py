@@ -11,23 +11,6 @@ def page(lang):
     ja = lang == "ja"
     t = lambda j, e: j if ja else e
     root = "" if ja else "../"
-    demo_text = {
-        "idle": t("画面の右端へ、カーソルを動かしてみてください。", "Move your cursor to the right edge of the screen."),
-        "edge": t("端で上下にスクロールして相手を選び、端に3回ぶつけて（クリック3回でも）ノック。", "Scroll up or down on the edge to choose, then bump the edge three times (or click three times) to knock."),
-        "knocking": t("{name}にノックしました…", "Knocking on {name}…"),
-        "room": t("{name}が応じました。一言を返したり、画面を見せてもらったりできます。", "{name} answered. Send a quick reply, or ask to see their screen."),
-        "closed": t("部屋を閉じました。もう一度試せます。", "Room closed. Try it again."),
-        "connected": t("つながっています", "Connected"),
-        "theirScreen": t("{name}の画面", "{name}’s screen"),
-        "showMe": t("画面を見せてもらう", "Ask to see their screen"),
-        "back": t("外をクリックか Esc で部屋に戻る", "Click outside or press Esc to go back"),
-        "replies": t(["OK", "待って", "あとで"], ["OK", "Wait", "Later"]),
-        "answer": t("いいよ、今見せるね", "Sure, showing you now"),
-        "theirReplies": t(["了解！", "ゆっくりでいいよ", "じゃあまたあとで"], ["Got it!", "Take your time", "Talk later, then"]),
-        "people": t(["ハル", "ナギ", "アオ"], ["Haru", "Nagi", "Ao"]),
-        "tryClick": t("クリックで試す", "Try with a click"),
-        "close": t("閉じる", "Close"),
-    }
     return f"""<!doctype html>
 <html lang="{lang}">
 <head>
@@ -57,36 +40,13 @@ def page(lang):
     </div>
     <div class="hero-aside">
       <p>{t("通話を始めるほどじゃない。でも、ちょっと話したい。", "Not quite a call. Just a quick word.")}<br>{t("画面の端にカーソルをぶつけると、友達にノックが届きます。応じたら、2人の画面の端に小さな部屋が開きます。", "Bump your cursor against the edge of the screen and a friend gets a knock. When they answer, a small room opens on the edge of both screens.")}</p>
-      <a class="try-link" href="#experience">{t("触ってみる", "Give it a try")} <span aria-hidden="true">↓</span></a>
+      <a class="try-link" href="#experience">{t("動画で見る", "Watch it")} <span aria-hidden="true">↓</span></a>
       <p class="note">{t("Mac 用・無料。", "For Mac. Free.")}</p>
     </div>
   </header>
 
-  <section id="experience" class="experience" aria-label="{t("ノックの操作デモ", "Interactive Knock demo")}">
-    <div class="desk" id="desk" data-phase="idle">
-      <div class="menubar" aria-hidden="true"><span>{t("Finder　ファイル　編集　表示", "Finder　File　Edit　View")}</span><span>10:09</span></div>
-      <div class="window" aria-hidden="true"><div class="lights"><i></i><i></i><i></i></div><div class="lines"><b></b><b></b><b class="short"></b><b></b><b class="short"></b></div></div>
-      <div class="dial" id="dial" aria-hidden="true"></div>
-      <div class="bumps" id="bumps" aria-hidden="true"><i></i><i></i><i></i></div>
-      <div class="ripple" id="ripple" aria-hidden="true"></div>
-      <aside class="room" id="room" aria-live="polite">
-        <div class="room-head"><button class="room-close" id="roomClose" aria-label="{demo_text["close"]}">×</button><div><strong id="roomName"></strong><span>{demo_text["connected"]}</span></div><div class="avatar" id="roomAvatar"></div></div>
-        <div class="room-floor" id="floor">
-          <div class="tiles" id="tiles"></div>
-          <div class="bubbles" id="bubbles"></div>
-          <div class="cursor them" id="theirCursor"><svg viewBox="0 0 16 22" aria-hidden="true"><path d="M1 1v17l4.5-4.2 3 6.7 3-1.4-3-6.5H15z"/></svg><span id="theirLabel"></span></div>
-        </div>
-        <div class="room-foot"><div class="replies" id="replies"></div><button class="show" id="showMe">{demo_text["showMe"]}</button></div>
-      </aside>
-      <div class="edge" id="edge" aria-label="{t("画面の右端", "The right edge of the screen")}" role="button" tabindex="0"></div>
-      <div class="lightbox" id="lightbox" hidden><div class="big" id="big"></div><p>{demo_text["back"]}</p></div>
-    </div>
-    <div class="toolbar">
-      <p class="status" id="status" aria-live="polite">{demo_text["idle"]}</p>
-      <button class="fallback" id="fallback">{demo_text["tryClick"]}</button>
-    </div>
-    <p class="disclaimer">{t("ブラウザの中のサンプルです。実際には誰にも届きません。", "A browser sample. Nobody actually receives anything.")}</p>
-    <script type="application/json" id="demoText">{json.dumps(demo_text, ensure_ascii=False)}</script>
+  <section id="experience" class="experience" aria-label="{t("ノックの使い方の動画", "Knock in action")}">
+    <video class="reel" src="{root}media/knock.mp4" poster="{root}media/knock-poster.jpg" autoplay muted loop playsinline preload="metadata"></video>
   </section>
 
   <section class="about">
@@ -157,7 +117,6 @@ def page(lang):
     <div><a href="{root}privacy.html">{t("プライバシーポリシー", "Privacy")}</a><a href="{root}terms.html">{t("利用規約", "Terms")}</a><span>© 2026 {t("ノック", "Knock")}</span></div>
   </footer>
 </main>
-<script src="{root}demo.js"></script>
 </body>
 </html>
 """
