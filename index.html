@@ -3,64 +3,130 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ノック — Mac の画面の端で、友達とつながる</title>
-<meta name="description" content="画面の端にポインタを3回ぶつけると、友達にノックが届く。相手が応じると、2人の画面の端に小さな部屋が開く。Mac 用の無料アプリです。">
+<title>ノック — 画面の端に、友達の部屋。</title>
+<meta name="description" content="画面の端にカーソルを3回ぶつけると、友達にノックが届く。応じると、2人の画面の端に小さな部屋が開く。Mac 用の無料アプリ。">
 <meta property="og:title" content="ノック">
-<meta property="og:description" content="Mac の画面の端で、友達とつながる。">
-<meta property="og:image" content="icon.png">
+<meta property="og:description" content="画面の端に、友達の部屋。">
+<meta property="og:image" content="https://hikaru777.github.io/knock-site/icon.png">
+<link rel="alternate" hreflang="ja" href="https://hikaru777.github.io/knock-site/">
+<link rel="alternate" hreflang="en" href="https://hikaru777.github.io/knock-site/en/">
 <link rel="icon" href="icon.png">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="home.css">
 </head>
 <body>
-<div class="wrap">
-  <header class="site"><img src="icon.png" alt=""><a href="./">ノック</a></header>
+<main class="shell">
+  <nav class="navigation">
+    <a class="brand" href="./"><img src="icon.png" width="36" height="36" alt="">ノック</a>
+    <a href="en/" hreflang="en" lang="en">English</a>
+  </nav>
 
-  <main>
-    <div class="hero">
-      <img class="icon" src="icon.png" alt="ノックのアイコン">
-      <h1>ノック</h1>
-      <p class="lead">Mac の画面の端で、友達とつながる。</p>
-      <p class="sub">画面の端にポインタを3回ぶつけると、友達にノックが届きます。相手が応じると、2人の画面の端に小さな部屋が開きます。</p>
-      <a class="button" href="https://github.com/hikaru777/knock-releases/releases/latest/download/Knock.zip">Mac 版をダウンロード（無料）</a>
-      <p class="req">macOS 26 以降・Apple シリコン / Intel</p>
+  <header class="hero">
+    <div>
+      <p class="label"><span class="dot"></span>Mac のための、となりの席。</p>
+      <h1>画面の端を、3回。<br><span>友達が、そこにいる。</span></h1>
     </div>
+    <div class="hero-aside">
+      <p>通話を始めるほどじゃない。でも、ちょっと話したい。<br>画面の端にカーソルをぶつけると、友達にノックが届きます。応じたら、2人の画面の端に小さな部屋が開きます。</p>
+      <a class="try-link" href="#experience">触ってみる <span aria-hidden="true">↓</span></a>
+      <p class="note">Mac 用・無料。</p>
+    </div>
+  </header>
 
-    <!--VIDEO-->
+  <section id="experience" class="experience" aria-label="ノックの操作デモ">
+    <div class="desk" id="desk" data-phase="idle">
+      <div class="menubar" aria-hidden="true"><span>Finder　ファイル　編集　表示</span><span>10:09</span></div>
+      <div class="window" aria-hidden="true"><div class="lights"><i></i><i></i><i></i></div><div class="lines"><b></b><b></b><b class="short"></b><b></b><b class="short"></b></div></div>
+      <div class="dial" id="dial" aria-hidden="true"></div>
+      <div class="bumps" id="bumps" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="ripple" id="ripple" aria-hidden="true"></div>
+      <aside class="room" id="room" aria-live="polite">
+        <div class="room-head"><button class="room-close" id="roomClose" aria-label="閉じる">×</button><div><strong id="roomName"></strong><span>つながっています</span></div><div class="avatar" id="roomAvatar"></div></div>
+        <div class="room-floor" id="floor">
+          <div class="tiles" id="tiles"></div>
+          <div class="bubbles" id="bubbles"></div>
+          <div class="cursor them" id="theirCursor"><svg viewBox="0 0 16 22" aria-hidden="true"><path d="M1 1v17l4.5-4.2 3 6.7 3-1.4-3-6.5H15z"/></svg><span id="theirLabel"></span></div>
+        </div>
+        <div class="room-foot"><div class="replies" id="replies"></div><button class="show" id="showMe">画面を見せてもらう</button></div>
+      </aside>
+      <div class="edge" id="edge" aria-label="画面の右端" role="button" tabindex="0"></div>
+      <div class="lightbox" id="lightbox" hidden><div class="big" id="big"></div><p>外をクリックか Esc で部屋に戻る</p></div>
+    </div>
+    <div class="toolbar">
+      <p class="status" id="status" aria-live="polite">画面の右端へ、カーソルを動かしてみてください。</p>
+      <button class="fallback" id="fallback">クリックで試す</button>
+    </div>
+    <p class="disclaimer">ブラウザの中のサンプルです。実際には誰にも届きません。</p>
+    <script type="application/json" id="demoText">{"idle": "画面の右端へ、カーソルを動かしてみてください。", "edge": "端で上下にスクロールして相手を選び、端に3回ぶつけて（クリック3回でも）ノック。", "knocking": "{name}にノックしました…", "room": "{name}が応じました。一言を返したり、画面を見せてもらったりできます。", "closed": "部屋を閉じました。もう一度試せます。", "connected": "つながっています", "theirScreen": "{name}の画面", "showMe": "画面を見せてもらう", "back": "外をクリックか Esc で部屋に戻る", "replies": ["OK", "待って", "あとで"], "answer": "いいよ、今見せるね", "theirReplies": ["了解！", "ゆっくりでいいよ", "じゃあまたあとで"], "people": ["ハル", "ナギ", "アオ"], "tryClick": "クリックで試す", "close": "閉じる"}</script>
+  </section>
 
-    <section>
-      <h2>できること</h2>
-      <div class="grid">
-        <div class="card"><h3>ノック</h3><p>画面の端にポインタを止めると、相手を選ぶダイヤルが出ます。端に3回ぶつけると、その人にノックが届きます。</p></div>
-        <div class="card"><h3>部屋</h3><p>応じると、端に2人の部屋が開きます。メッセージ、相手のカーソル、「OK」「待って」「あとで」の一言の返事。</p></div>
-        <div class="card"><h3>画面を見せる</h3><p>選んだウィンドウだけを相手に見せて、ピンで場所を指せます。</p></div>
-        <div class="card"><h3>ファイルを渡す</h3><p>部屋の端にファイルを落とすと、相手の Mac に届きます。</p></div>
-        <div class="card"><h3>グループ</h3><p>何人かでひとつの部屋を使えます。</p></div>
-        <div class="card"><h3>集中する</h3><p>集中しているあいだ、届いたノックは静かに待ちます。</p></div>
-      </div>
-    </section>
-
-    <section>
-      <h2>はじめかた</h2>
-      <ol class="steps">
-        <li>ダウンロードした Knock.zip を開き、出てきた Knock を「アプリケーション」フォルダに入れます。</li>
-        <li>Knock を開き、メールアドレスに届く6桁のコードでサインインします。</li>
-        <li>名前を決めて、招待コードを友達に送ります。友達も同じようにサインインして、コードを入れたらつながります。</li>
-        <li>画面の端にポインタを止めて、友達を選び、3回ぶつけてノックします。</li>
+  <section class="about">
+    <p class="number">01 / 使い方</p>
+    <div>
+      <h2>端に止めて、選んで、<br>3回ぶつける。</h2>
+      <ol class="flow">
+        <li><strong>端に止める</strong><span>画面の右端にカーソルを止めると、友達を選ぶダイヤルが出ます。上下のスクロールで相手を、横のスクロールでグループを選びます。</span></li>
+        <li><strong>ノック</strong><span>端に3回ぶつけると、その人にノックが届きます。相手の画面の端に、「答える」と「ちょっと待って」が出ます。</span></li>
+        <li><strong>部屋</strong><span>相手が「答える」を押すと、2人の画面の端に部屋が開きます。</span></li>
       </ol>
-      <p>新しい版は、アプリが自動で受け取ります。</p>
-    </section>
+    </div>
+  </section>
 
-    <section>
-      <h2>カーソルや画面はどこを通るか</h2>
-      <p class="note">カーソル、一言の返事、見せた画面、部屋の中で渡すファイルは、2台の Mac のあいだで直接やりとりします（暗号化されます）。サーバーを使うのは、サインイン、ノック、メッセージ、直接つなぐための手続きと、相手がオフラインのときの受け渡しだけです。くわしくは<a href="privacy.html">プライバシーポリシー</a>を見てください。</p>
-    </section>
-  </main>
+  <section class="about">
+    <p class="number">02 / 部屋でできること</p>
+    <div>
+      <h2>話すより軽く、<br>チャットより近く。</h2>
+      <div class="features">
+        <div><h3>相手のカーソル</h3><p>部屋の中では、相手のカーソルが名前つきで動きます。指さすだけで伝わります。</p></div>
+        <div><h3>一言の返事</h3><p>「OK」「待って」「あとで」。打たずに返せます。メッセージも送れます。</p></div>
+        <div><h3>画面を見せる</h3><p>選んだウィンドウだけを見せて、ピンで場所を指せます。何人かの画面は部屋に並び、クリックで拡大、外へドラッグすると自分のウィンドウになります。</p></div>
+        <div><h3>ファイルを渡す</h3><p>部屋にファイルを落とすと、相手の Mac に届きます。</p></div>
+        <div><h3>グループ</h3><p>何人かでひとつの部屋を使えます。ダイヤルを横にスクロールして、グループを選びます。</p></div>
+        <div><h3>集中する</h3><p>集中しているあいだ、届いたノックは静かに待ちます。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about">
+    <p class="number">03 / どこを通るか</p>
+    <div>
+      <h2>カーソルも画面も、<br>2台の Mac のあいだで。</h2>
+      <p>カーソル、一言の返事、見せた画面、部屋で渡すファイルは、2台の Mac を直接つないでやりとりします（暗号化されます）。ネットワークの都合で直接つながらないときだけ、サーバーがその場で中継します（保存はしません）。</p>
+      <p class="muted">サーバーを使うのは、サインイン、ノック、メッセージ、直接つなぐための手続きと、相手がオフラインのときの受け渡しです。広告や解析のためのツールは入っていません。 <a href="privacy.html">プライバシーポリシー</a></p>
+    </div>
+  </section>
+
+  <section id="download" class="purchase">
+    <div>
+      <p class="number">04 / ダウンロード</p>
+      <h2>友達と2人で、<br>入れてください。</h2>
+      <ol class="install">
+        <li>Knock.zip を開き、Knock を「アプリケーション」フォルダに入れます。</li>
+        <li>Knock を開き、メールに届く6桁のコードでサインインします。</li>
+        <li>名前を決めて、招待コードを友達に送ります。友達がコードを入れたら、つながります。</li>
+      </ol>
+      <p class="muted">友達がまだいなくても、テストユーザーで一通り試せます。</p>
+    </div>
+    <div class="price-box">
+      <p class="label">ノック</p>
+      <p class="price">無料</p>
+      <p>広告なし。アカウントだけ作れば使えます。</p>
+      <a class="download" href="https://github.com/hikaru777/knock-releases/releases/latest/download/Knock.zip">Mac 版をダウンロード <span aria-hidden="true">↓</span></a>
+      <p class="small">macOS 26 以降 · Apple シリコン / Intel。新しい版はアプリが自動で受け取ります。</p>
+      <p class="small"><a href="https://github.com/hikaru777/knock-releases/releases">すべての版</a></p>
+    </div>
+  </section>
+
+  <section class="notes">
+    <div><h3>画面を見せるには、許可を。</h3><p>初めて画面を見せるとき、macOS の「画面収録」の許可を求めます。見せるのは、あなたが選んだウィンドウだけです。</p></div>
+    <div><h3>ノックしすぎない仕組み。</h3><p>相手が集中中なら、ノックは静かに待ちます。つながっていない相手には届きません。</p></div>
+    <div><h3>困ったときは。</h3><p>アプリの「アカウント」→「お問い合わせ」から送ってください。通報もここからできます。</p></div>
+  </section>
 
   <footer>
-    <nav><a href="privacy.html">プライバシーポリシー</a><a href="terms.html">利用規約</a><a href="https://github.com/hikaru777/knock-releases/releases">すべての版</a></nav>
-    <div>お問い合わせは、アプリの「アカウント」→「お問い合わせ」からどうぞ。</div>
-    <div>© 2026 ノック</div>
+    <a class="brand" href="./"><img src="icon.png" width="30" height="30" alt="">ノック</a>
+    <div><a href="privacy.html">プライバシーポリシー</a><a href="terms.html">利用規約</a><span>© 2026 ノック</span></div>
   </footer>
-</div>
+</main>
+<script src="demo.js"></script>
 </body>
 </html>
